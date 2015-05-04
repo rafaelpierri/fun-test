@@ -1,0 +1,4 @@
+language: ruby
+script: "bin/rspec"
+rvm:
+  - 2.2.0
