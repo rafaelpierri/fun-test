@@ -1,9 +1,8 @@
 require 'spec_helper'
 require 'importers'
-
+ 
 describe "Ecad PDF Import" do
   before(:each) do
-    puts "#{File.dirname(__FILE__)}/files/careqa.pdf"
     @importer = Importers::PdfEcad.new("#{File.dirname(__FILE__)}/files/careqa.pdf")    
   end
 
@@ -47,6 +46,12 @@ describe "Ecad PDF Import" do
   it "should return nil if it is not a right_holder" do
     line = "3810796       -   .   .   -          O RESTO E PO                                                LB             18/03/2010"
     rh = @importer.right_holder(line)
+    rh.should be_nil
+  end
+
+  it "should return nil if it is not a work" do
+    line = "741          VELAS PROD. ARTISTICAS MUSICAIS E      VELAS                    247.22.09.80 ABRAMUS           E   8,33 20/09/95               2"
+    rh = @importer.work(line)
     rh.should be_nil
   end
 
